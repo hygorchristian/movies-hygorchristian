@@ -1341,7 +1341,7 @@ eslint-plugin-react@^7.31.7:
 
 eslint-plugin-vitest-globals@^1.2.0:
   version "1.2.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-vitest-globals/-/eslint-plugin-vitest-globals-1.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest-globals/-/eslint-plugin-vitest-globals-1.2.0.tgz#b16dae2fc284e36f09cd3ebbf54f9c0741576e9b"
   integrity sha512-vINsci+UOvObny6vutsa0c9xzM0PfdKgtkhnH8lLSe4+gZPjhK9O4v26oSu5Svb1n8Rvug4iX2k6keuKBoRlOg==
   dependencies:
     eslint-config-sets "^1.8.3"
