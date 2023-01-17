@@ -17,7 +17,12 @@
     "ecmaVersion": "latest"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": [
+    "next/core-web-vitals", 
+    "plugin:@typescript-eslint/recommended", 
+    "plugin:vitest-globals/recommended",
+    "prettier"
+  ],
   "env": { 
     "vitest-globals/env": true,
     "browser": true,

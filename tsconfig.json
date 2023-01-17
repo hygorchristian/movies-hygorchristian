@@ -27,6 +27,7 @@
     ],
     "paths": {
       "components/*": ["./src/components/*"],
+      "env/*": ["./src/env/*"],
       "styles/*": ["./src/styles/*"]
     }
   },
