@@ -1,0 +1,38 @@
+@import '../../styles/variables';
+
+#header-mobile {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  border-bottom: 1px solid $divider_color;
+}
+
+#header-desktop {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid $divider_color;
+}
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+  background-color: $bg_200;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 16px;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid $divider_color_2;
+  }
+}

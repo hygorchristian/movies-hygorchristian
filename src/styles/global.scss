@@ -1,9 +1,28 @@
-* { 
+@import url('https://fonts.googleapis.com/css2?family=Magra:wght@400;700&display=swap');
+@import './variables';
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} 
+}
 
-html { 
-  font-size: 16px;  
+html {
+  font-size: 16px;
+  color: $text_color;
+  font-family: 'Magra', sans-serif;
+}
+
+body {
+  // Sizing
+  min-height: 100vh;
+  min-width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+
+  // Background
+  background-image: radial-gradient(bottom right, #25232d, #09080b);
+  background-image: -moz-radial-gradient(top left, #25232d, #09080b);
+  background-image: -webkit-radial-gradient(top left, #25232d, #09080b);
 }

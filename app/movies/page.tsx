@@ -1,3 +1,3 @@
 export default function AppPage() {
-  return <h1>comming soon =D</h1>;
+  return <h1>movies lol</h1>;
 }
