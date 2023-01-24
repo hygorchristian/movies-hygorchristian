@@ -1,5 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import axios from 'axios';
+import env from 'env/types';
 import type { FavoriteMovie, FeatureResource, PaginatedReponse } from './types';
 
 export const featureResources = {
@@ -38,19 +39,17 @@ export function getEndpoint(account_id: string, key: FeatureResource): string {
 
 export default class TMDBApi {
   private client: AxiosInstance;
-  private readonly account_id: string = process.env.TMDB_ACCOUNT_ID ?? '';
+  private readonly account_id: string = env.TMDB_ACCOUNT_ID;
 
   constructor() {
-    const token = process.env.TMDB_TOKEN ?? '';
-
     this.client = axios.create({
       baseURL: 'https://api.themoviedb.org/3',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${env.TMDB_TOKEN}`
       },
       params: {
-        api_key: process.env.TMDB_API_KEY
+        api_key: env.TMDB_API_KEY
       }
     });
   }
