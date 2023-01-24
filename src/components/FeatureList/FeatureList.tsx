@@ -13,7 +13,7 @@ export default async function FeatureList({
   resource
 }: FeatureListProps): Promise<JSX.Element> {
   const items = await buildTMDBApi().getFeatureList(resource);
-
+  //
   return (
     <div className="h-feature-list">
       <h2 className="title">{title}</h2>
