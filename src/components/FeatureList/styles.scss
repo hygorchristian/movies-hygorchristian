@@ -1,0 +1,21 @@
+.h-feature-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f0f0f0;
+    width: 100%;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 24px;
+    padding: 24px 0;
+  }
+}

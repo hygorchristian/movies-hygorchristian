@@ -2,10 +2,10 @@
 
 import Drawer from '@mui/material/Drawer';
 import Button from 'components/Button';
-import SafeClientComponent from 'components/SafeClientComponent';
+import MenuItem from 'components/MenuItem';
+import Separator from 'components/Separator';
 import { useState } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-import { useMediaQuery } from 'react-responsive';
 import './styles.scss';
 
 type HeaderProps = {
@@ -44,6 +44,17 @@ function HeaderMobile(): JSX.Element {
               <FiArrowLeft size={24} />
             </Button>
           </div>
+          <div className="content">
+            <MenuItem label="Movies" path="/movies" onNavigate={toggleMenu} />
+            <MenuItem label="TV Shows" path="/shows" onNavigate={toggleMenu} />
+            <MenuItem label="Animes" path="/animes" onNavigate={toggleMenu} />
+            <MenuItem
+              label="My Recomendations"
+              path="/recomendations"
+              onNavigate={toggleMenu}
+            />
+            <Separator />
+          </div>
         </div>
       </Drawer>
     </>
@@ -59,18 +70,10 @@ function HeaderDesktop(): JSX.Element {
 }
 
 export default function Header(props: HeaderProps = {}): JSX.Element {
-  const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
-
-  if (isMobile)
-    return (
-      <SafeClientComponent>
-        <HeaderMobile />
-      </SafeClientComponent>
-    );
-
   return (
-    <SafeClientComponent>
+    <>
+      <HeaderMobile />
       <HeaderDesktop />
-    </SafeClientComponent>
+    </>
   );
 }

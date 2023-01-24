@@ -9,7 +9,7 @@
       "parserOptions": {
         "project": "tsconfig.json"
       }
-    }   
+    }
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -18,17 +18,18 @@
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
-    "next/core-web-vitals", 
-    "plugin:@typescript-eslint/recommended", 
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
     "plugin:vitest-globals/recommended",
     "prettier"
   ],
-  "env": { 
+  "env": {
     "vitest-globals/env": true,
     "browser": true,
     "es2022": true
   },
   "rules": {
-    "@typescript-eslint/consistent-type-imports": "warn"
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

@@ -7,7 +7,9 @@ import { z } from 'zod';
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
-  TMDB_API_KEY: z.string()
+  TMDB_API_KEY: z.string(),
+  TMDB_TOKEN: z.string(),
+  TMDB_ACCOUNT_ID: z.string()
 });
 
 /**

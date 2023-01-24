@@ -8,8 +8,7 @@ export default function AppTemplate({ children }: AppTemplateProps) {
   return (
     <div>
       <Header />
-      {children}
-      <h2>other useless stuff here =)</h2>
+      <div className="h-main-page-content">{children}</div>
     </div>
   );
 }

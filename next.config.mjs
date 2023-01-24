@@ -13,6 +13,16 @@ const config = {
   },
   experimental: {
     appDir: true
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        port: '',
+        pathname: '/t/p/**'
+      }
+    ]
   }
 };
 export default config;

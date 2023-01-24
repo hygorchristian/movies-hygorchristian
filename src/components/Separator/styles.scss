@@ -1,0 +1,30 @@
+$separator_color: #4b4954;
+$separator_transparent: #4b495400;
+
+.h-separator {
+  display: flex;
+  content: '';
+  background-size: contain;
+
+  &.vertical {
+    height: 100%;
+    width: 2px;
+    background-image: linear-gradient(
+      0deg,
+      $separator_transparent 0%,
+      $separator_color 50%,
+      $separator_transparent 100%
+    );
+  }
+
+  &.horizontal {
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(
+      90deg,
+      $separator_transparent 0%,
+      $separator_color 50%,
+      $separator_transparent 100%
+    );
+  }
+}
