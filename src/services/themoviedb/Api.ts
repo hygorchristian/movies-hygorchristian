@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 import axios from 'axios';
-import env from 'env/types';
+import { env } from 'env/client.mjs';
 import type { FavoriteMovie, FeatureResource, PaginatedReponse } from './types';
 
 export const featureResources = {
@@ -36,7 +36,6 @@ export function getEndpoint(account_id: string, key: FeatureResource): string {
 
   return keys[key](account_id);
 }
-
 export default class TMDBApi {
   private client: AxiosInstance;
   private readonly account_id: string = env.NEXT_PUBLIC_TMDB_ACCOUNT_ID;
