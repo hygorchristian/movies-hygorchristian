@@ -7,25 +7,25 @@ import './styles.scss';
 
 type FeatureCardProps = {
   feature: FavoriteMovie;
-  rank: number;
+  rank?: number;
 };
 //
 export default function FeatureCard({
   feature,
-  rank = 0
+  rank
 }: FeatureCardProps): JSX.Element {
   const src = getBackdropURL(feature);
   const blurDataURL = getPlaceholderPosterURL(feature);
   const title = feature.title;
   const year = feature.release_date?.substring(0, 4) ?? '';
-  const rate = (feature.vote_average / 2).toFixed(1);
-
-  const rateClass = feature.vote_average / 2 >= 5 ? 'highlight' : '';
+  const rate = (feature?.rating ?? feature.vote_average) / 2;
+  const rate_text = rate.toFixed(1);
+  const rateClass = rate >= 5 ? 'highlight' : '';
 
   return (
     <div className="h-feature-card">
-      <div className="rank">{rank}</div>
-      <div className="card">
+      {rank && <div className="rank">{rank}</div>}
+      <div className={['card', rank ? 'with-rank' : ''].join(' ')}>
         <div className="image">
           <Image
             src={src}
@@ -48,7 +48,7 @@ export default function FeatureCard({
           </div>
           <Separator orientation="vertical" light />
           <div className={['rate', rateClass].join(' ')}>
-            <span className="rate_number">{rate}</span>
+            <span className="rate_number">{rate_text}</span>
             <BsFillStarFill type="solid" />
           </div>
         </div>

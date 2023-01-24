@@ -13,9 +13,10 @@ export default function MoviesPage() {
         <FeatureList
           title="top 10"
           resource={featureResources.movies_favorites}
+          withRank
         />
         {/* @ts-expect-error */}
-        <FeatureList title="Rated" resource={featureResources.movies_rated} />
+        <FeatureList title="Watched" resource={featureResources.movies_rated} />
       </Suspense>
     </main>
   );

@@ -1,7 +1,6 @@
 import DefaultTags from 'components/DefaultTags';
 
 export default function Head() {
-  console.log(DefaultTags);
   return (
     <>
       <DefaultTags />

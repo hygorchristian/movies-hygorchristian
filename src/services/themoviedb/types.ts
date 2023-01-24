@@ -93,6 +93,7 @@ export type FavoriteMovie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  rating?: number;
 };
 
 export type FeatureResource = PropertyTypes<typeof featureResources>;
