@@ -1,15 +1,15 @@
 // @ts-check
 import { z } from 'zod';
 
+const minStr = 5;
 /**
  * Specify your server-side environment variables schema here.
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
-  NODE_ENV: z.enum(['development', 'test', 'production']),
-  TMDB_API_KEY: z.string(),
-  TMDB_TOKEN: z.string(),
-  TMDB_ACCOUNT_ID: z.string()
+  TMDB_TOKEN: z.string().min(minStr),
+  TMDB_API_KEY: z.string().min(minStr),
+  TMDB_ACCOUNT_ID: z.string().min(minStr)
 });
 
 /**
