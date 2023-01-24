@@ -1,10 +1,91 @@
 .h-feature-card {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
 
-  .image {
-    width: 100%;
-    height: 400px;
+  .rank {
+    position: absolute;
+    font-size: 150px;
+    font-weight: bold;
+    left: 0;
+    color: #29282e;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    height: 180px;
+    width: calc(100% - 60px);
     position: relative;
+    overflow: hidden;
+
+    .image {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      right: 0;
+    }
+
+    .info {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: 60px;
+      border-radius: 20px;
+      background-color: #54545470;
+      backdrop-filter: blur(10px);
+      bottom: 0;
+      padding: 8px 0;
+
+      .feature-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 16px;
+
+        .title {
+          font-size: 20px;
+          line-height: 20px;
+          font-weight: bold;
+        }
+
+        .year {
+          font-size: 20px;
+          line-height: 20px;
+          font-weight: normal;
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+
+      .rate {
+        width: 90px;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+
+        &.highlight {
+          color: yellow;
+        }
+
+        .rate_number {
+          font-size: 28px;
+          font-weight: bold;
+          margin-bottom: 4px;
+        }
+      }
+    }
   }
 }

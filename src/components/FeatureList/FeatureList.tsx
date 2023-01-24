@@ -17,9 +17,11 @@ export default async function FeatureList({
   return (
     <div className="h-feature-list">
       <h2 className="title">{title}</h2>
-      {items.map(feature => (
-        <FeatureCard key={feature.id} feature={feature} />
-      ))}
+      <div className="list">
+        {items.map((feature, index) => (
+          <FeatureCard key={feature.id} feature={feature} rank={index} />
+        ))}
+      </div>
     </div>
   );
 }

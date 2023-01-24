@@ -1,5 +1,7 @@
 $separator_color: #4b4954;
 $separator_transparent: #4b495400;
+$l_separator_color: #ffffff;
+$l_separator_transparent: #ffffff00;
 
 .h-separator {
   display: flex;
@@ -15,6 +17,15 @@ $separator_transparent: #4b495400;
       $separator_color 50%,
       $separator_transparent 100%
     );
+
+    &.light {
+      background-image: linear-gradient(
+        0deg,
+        $l_separator_transparent 0%,
+        $l_separator_color 50%,
+        $l_separator_transparent 100%
+      );
+    }
   }
 
   &.horizontal {
@@ -26,5 +37,14 @@ $separator_transparent: #4b495400;
       $separator_color 50%,
       $separator_transparent 100%
     );
+
+    &.light {
+      background-image: linear-gradient(
+        90deg,
+        $l_separator_transparent 0%,
+        $l_separator_color 50%,
+        $l_separator_transparent 100%
+      );
+    }
   }
 }

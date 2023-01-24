@@ -43,6 +43,17 @@ a {
   @media only screen and (min-width: $mobile_breakpoint) {
     height: calc(100vh - 100px);
   }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+
+    @media only screen and (min-width: $mobile_breakpoint) {
+      padding: 0;
+    }
+  }
 }
 
 main {

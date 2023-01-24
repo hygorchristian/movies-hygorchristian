@@ -6,7 +6,7 @@ export const revalidate = 10;
 
 export default function MoviesPage() {
   return (
-    <div className="">
+    <main>
       <h1>movies lol</h1>
       <Suspense>
         {/* @ts-expect-error */}
@@ -17,6 +17,6 @@ export default function MoviesPage() {
         {/* @ts-expect-error */}
         <FeatureList title="Rated" resource={featureResources.movies_rated} />
       </Suspense>
-    </div>
+    </main>
   );
 }
