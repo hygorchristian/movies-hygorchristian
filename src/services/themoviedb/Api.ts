@@ -39,17 +39,17 @@ export function getEndpoint(account_id: string, key: FeatureResource): string {
 
 export default class TMDBApi {
   private client: AxiosInstance;
-  private readonly account_id: string = env.TMDB_ACCOUNT_ID;
+  private readonly account_id: string = env.NEXT_PUBLIC_TMDB_ACCOUNT_ID;
 
   constructor() {
     this.client = axios.create({
       baseURL: 'https://api.themoviedb.org/3',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Bearer ${env.TMDB_TOKEN}`
+        Authorization: `Bearer ${env.NEXT_PUBLIC_TMDB_TOKEN}`
       },
       params: {
-        api_key: env.TMDB_API_KEY
+        api_key: env.NEXT_PUBLIC_TMDB_API_KEY
       }
     });
   }
