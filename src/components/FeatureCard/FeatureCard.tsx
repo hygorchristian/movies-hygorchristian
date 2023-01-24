@@ -6,7 +6,7 @@ import './styles.scss';
 type FeatureCardProps = {
   feature: FavoriteMovie;
 };
-
+//
 export default function FeatureCard({
   feature
 }: FeatureCardProps): JSX.Element {
