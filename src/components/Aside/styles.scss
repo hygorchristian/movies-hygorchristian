@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+aside {
+  display: none;
+
+  @include responsive(desktop) {
+    display: flex;
+    width: 400px;
+    height: 100%;
+    border-right: 1px solid $divider_color;
+  }
+}

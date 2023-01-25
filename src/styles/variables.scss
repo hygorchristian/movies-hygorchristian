@@ -8,4 +8,19 @@ $divider_color_2: #302e34;
 
 $primary: #2aad14;
 
-$mobile_breakpoint: 650px;
+$mobile_breakpoint: 600px;
+$tablet_breakpoint: 1000px;
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == tablet {
+    @media only screen and (min-width: $mobile_breakpoint) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: $tablet_breakpoint) {
+      @content;
+    }
+  }
+}

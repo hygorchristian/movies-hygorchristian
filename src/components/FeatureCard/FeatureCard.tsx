@@ -1,7 +1,7 @@
 import Separator from 'components/Separator';
 import Image from 'next/image';
 import { BsFillStarFill } from 'react-icons/bs';
-import { getBackdropURL, getPlaceholderPosterURL } from 'services/themoviedb';
+import { getPlaceholderPosterURL, getSmBackdropURL } from 'services/themoviedb';
 import type { FavoriteMovie } from 'services/themoviedb/types';
 import './styles.scss';
 
@@ -14,7 +14,7 @@ export default function FeatureCard({
   feature,
   rank
 }: FeatureCardProps): JSX.Element {
-  const src = getBackdropURL(feature);
+  const src = getSmBackdropURL(feature);
   const blurDataURL = getPlaceholderPosterURL(feature);
   const title = feature.title;
   const year = feature.release_date?.substring(0, 4) ?? '';

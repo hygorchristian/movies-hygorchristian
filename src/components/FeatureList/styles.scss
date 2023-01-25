@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .h-feature-list {
   display: flex;
   flex-direction: column;
@@ -8,6 +10,10 @@
     font-weight: bold;
     color: #f0f0f0;
     width: 100%;
+
+    @include responsive(tablet) {
+      font-size: 24px;
+    }
   }
 
   .list {
@@ -17,5 +23,15 @@
     width: 100%;
     gap: 24px;
     padding: 24px 0;
+
+    @include responsive(tablet) {
+      overflow-x: auto;
+      padding: 24px 20px;
+      flex-direction: row;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
 }

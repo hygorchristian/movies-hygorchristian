@@ -71,9 +71,9 @@ function HeaderDesktop(): JSX.Element {
 
 export default function Header(props: HeaderProps = {}): JSX.Element {
   return (
-    <>
+    <header>
       <HeaderMobile />
       <HeaderDesktop />
-    </>
+    </header>
   );
 }

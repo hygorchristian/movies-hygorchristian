@@ -1,3 +1,4 @@
+import Aside from 'components/Aside';
 import Header from 'components/Header';
 
 type AppTemplateProps = {
@@ -6,9 +7,10 @@ type AppTemplateProps = {
 
 export default function AppTemplate({ children }: AppTemplateProps) {
   return (
-    <div>
+    <div className="h-main-page-content">
       <Header />
-      <div className="h-main-page-content">{children}</div>
+      <Aside />
+      {children}
     </div>
   );
 }

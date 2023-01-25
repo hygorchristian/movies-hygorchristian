@@ -12,6 +12,9 @@ export const getPlaceholderPosterURL = (feature: FavoriteMovie) =>
 export const getBackdropURL = (feature: FavoriteMovie) =>
   `https://image.tmdb.org/t/p/original${feature.backdrop_path}`;
 
+export const getSmBackdropURL = (feature: FavoriteMovie) =>
+  `https://image.tmdb.org/t/p/w780${feature.backdrop_path}`;
+
 export const getPlaceholderBackdropURL = (feature: FavoriteMovie) =>
   `https://image.tmdb.org/t/p/w300${feature.backdrop_path}`;
 
