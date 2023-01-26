@@ -1,5 +1,4 @@
 import type { PropertyTypes } from 'src/helpers/PropertyTypes';
-import type { featureResources } from './Api';
 
 export const featureEndpointTypes = {
   movies: 'movies',
@@ -95,5 +94,21 @@ export type FavoriteMovie = {
   vote_count: number;
   rating?: number;
 };
+
+export const featureResources = {
+  // Movies
+  movies_favorites: 'movies_favorites',
+  movies_watchlist: 'movies_watchlist',
+  movies_rated: 'movies_rated',
+  movies_recommendations: 'movies_recommendations',
+  // TV Shows
+  tv_favorites: 'tv_favorites',
+  tv_watchlist: 'tv_watchlist',
+  tv_rated: 'tv_rated',
+  tv_recommendations: 'tv_recommendations'
+} as const;
+
+export const isFeatureResource = (input: unknown): input is FeatureResource =>
+  Boolean(featureResources[input as FeatureResource]);
 
 export type FeatureResource = PropertyTypes<typeof featureResources>;

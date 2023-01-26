@@ -1,26 +1,30 @@
-import FeatureCard from 'components/FeatureCard';
-import { buildTMDBApi } from 'services/themoviedb';
+import FeatureCard, { FeatureCardSkeleton } from 'components/FeatureCard';
+import { Suspense } from 'react';
+import TMDBApi from 'services/themoviedb/TMDBApi';
 import type { FeatureResource } from 'services/themoviedb/types';
+
 import './styles.scss';
 
 type FeatureListProps = {
   title: string;
   resource: FeatureResource;
-  withRank: boolean;
+  withRank?: boolean;
 };
 
-export default async function FeatureList({
+async function FeatureList({
   title,
   resource,
   withRank = false
 }: FeatureListProps): Promise<JSX.Element> {
-  const items = await buildTMDBApi().getFeatureList(resource);
-  //
+  const features = await TMDBApi.getFeatureList(resource);
+
+  console.log({ features });
+
   return (
     <div className="h-feature-list">
       <h2 className="title">{title}</h2>
       <div className="list">
-        {items.map((feature, index) => (
+        {features.map((feature, index) => (
           <FeatureCard
             key={feature.id}
             feature={feature}
@@ -29,5 +33,30 @@ export default async function FeatureList({
         ))}
       </div>
     </div>
+  );
+}
+
+function FeatureListSkeleton(): JSX.Element {
+  return (
+    <div className="h-feature-list">
+      <div className="title skeleton-animated" />
+      <div className="list">
+        <FeatureCardSkeleton />
+        <FeatureCardSkeleton />
+        <FeatureCardSkeleton />
+        <FeatureCardSkeleton />
+      </div>
+    </div>
+  );
+}
+
+export default function FeatureListSuspense(
+  props: FeatureListProps
+): JSX.Element {
+  return (
+    <Suspense fallback={<FeatureListSkeleton />}>
+      {/* @ts-expect-error Async Server Component */}
+      <FeatureList {...props} />
+    </Suspense>
   );
 }

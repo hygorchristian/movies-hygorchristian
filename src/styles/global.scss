@@ -81,3 +81,36 @@ a {
     }
   }
 }
+
+.skeleton,
+.skeleton-animated {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.skeleton-animated {
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.01) 10%,
+    rgba(255, 255, 255, 0.05) 18%,
+    rgba(255, 255, 255, 0.01) 33%
+  );
+  background-size: 300%;
+  position: relative;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}

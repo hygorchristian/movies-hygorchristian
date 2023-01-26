@@ -3,19 +3,6 @@ import axios from 'axios';
 import { env } from 'env/client.mjs';
 import type { FavoriteMovie, FeatureResource, PaginatedReponse } from './types';
 
-export const featureResources = {
-  // Movies
-  movies_favorites: 'movies_favorites',
-  movies_watchlist: 'movies_watchlist',
-  movies_rated: 'movies_rated',
-  movies_recommendations: 'movies_recommendations',
-  // TV Shows
-  tv_favorites: 'tv_favorites',
-  tv_watchlist: 'tv_watchlist',
-  tv_rated: 'tv_rated',
-  tv_recommendations: 'tv_recommendations'
-} as const;
-
 type GetEndpointPath = (account_id: string) => string;
 
 export function getEndpoint(account_id: string, key: FeatureResource): string {
@@ -36,7 +23,7 @@ export function getEndpoint(account_id: string, key: FeatureResource): string {
 
   return keys[key](account_id);
 }
-export default class TMDBApi {
+class TMDBApi {
   private client: AxiosInstance;
   private readonly account_id: string = env.NEXT_PUBLIC_TMDB_ACCOUNT_ID;
 
@@ -56,9 +43,12 @@ export default class TMDBApi {
   public async getFeatureList(
     featureResource: FeatureResource
   ): Promise<FavoriteMovie[]> {
+    await new Promise(resolve => setTimeout(resolve, 2500));
     const response = await this.client.get<PaginatedReponse<FavoriteMovie>>(
       getEndpoint(this.account_id, featureResource)
     );
     return response.data.results;
   }
 }
+
+export default new TMDBApi();

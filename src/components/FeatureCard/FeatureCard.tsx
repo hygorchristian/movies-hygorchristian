@@ -56,3 +56,11 @@ export default function FeatureCard({
     </div>
   );
 }
+
+export function FeatureCardSkeleton(): JSX.Element {
+  return (
+    <div className="h-feature-card">
+      <div className="card skeleton-animated" />
+    </div>
+  );
+}

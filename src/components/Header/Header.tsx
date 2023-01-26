@@ -12,12 +12,36 @@ type HeaderProps = {
   //todo
 };
 
-function HeaderMobile(): JSX.Element {
+type HeaderRoute = {
+  path: `/${string}`;
+  label: string;
+};
+
+const routes: HeaderRoute[] = [
+  {
+    label: 'Movies',
+    path: '/movies'
+  },
+  {
+    label: 'TV Shows',
+    path: '/shows'
+  },
+  {
+    label: 'Animes',
+    path: '/animes'
+  },
+  {
+    label: 'Recomendations',
+    path: '/recomendations'
+  }
+];
+
+export default function Header(props: HeaderProps = {}): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(isOpen => !isOpen);
 
   return (
-    <>
+    <header>
       <div id="header-mobile">
         <Button
           onClick={toggleMenu}
@@ -45,35 +69,25 @@ function HeaderMobile(): JSX.Element {
             </Button>
           </div>
           <div className="content">
-            <MenuItem label="Movies" path="/movies" onNavigate={toggleMenu} />
-            <MenuItem label="TV Shows" path="/shows" onNavigate={toggleMenu} />
-            <MenuItem label="Animes" path="/animes" onNavigate={toggleMenu} />
-            <MenuItem
-              label="My Recomendations"
-              path="/recomendations"
-              onNavigate={toggleMenu}
-            />
+            {routes.map(({ path, label }) => (
+              <MenuItem
+                key={path}
+                label={label}
+                path={path}
+                onNavigate={toggleMenu}
+              />
+            ))}
             <Separator />
           </div>
         </div>
       </Drawer>
-    </>
-  );
-}
-
-function HeaderDesktop(): JSX.Element {
-  return (
-    <div id="header-desktop">
-      <span>header </span>
-    </div>
-  );
-}
-
-export default function Header(props: HeaderProps = {}): JSX.Element {
-  return (
-    <header>
-      <HeaderMobile />
-      <HeaderDesktop />
+      <div id="header-desktop">
+        <nav>
+          {routes.map(({ path, label }) => (
+            <MenuItem key={path} label={label} path={path} variant="vertical" />
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }

@@ -1,7 +1,4 @@
-import Api from './Api';
 import type { FavoriteMovie } from './types';
-
-export { featureResources } from './Api';
 
 export const getPosterURL = (feature: FavoriteMovie) =>
   `https://image.tmdb.org/t/p/w500${feature.poster_path}`;
@@ -17,7 +14,3 @@ export const getSmBackdropURL = (feature: FavoriteMovie) =>
 
 export const getPlaceholderBackdropURL = (feature: FavoriteMovie) =>
   `https://image.tmdb.org/t/p/w300${feature.backdrop_path}`;
-
-export function buildTMDBApi(): Api {
-  return new Api();
-}

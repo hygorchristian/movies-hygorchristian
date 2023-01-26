@@ -8,8 +8,9 @@
   .title {
     font-size: 20px;
     font-weight: bold;
+    height: 24px;
     color: #f0f0f0;
-    width: 100%;
+    width: 300px;
 
     @include responsive(tablet) {
       font-size: 24px;

@@ -1,1 +1,1 @@
-export { default } from './FeatureCard';
+export { default, FeatureCardSkeleton } from './FeatureCard';
