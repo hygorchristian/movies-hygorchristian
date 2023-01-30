@@ -1,12 +1,15 @@
 import Separator from 'components/Separator';
 import Image from 'next/image';
 import { BsFillStarFill } from 'react-icons/bs';
-import { getPlaceholderPosterURL, getSmBackdropURL } from 'services/themoviedb';
-import type { FavoriteMovie } from 'services/themoviedb/types';
+import {
+  getPlaceholderPosterURL,
+  getSmBackdropURL
+} from 'services/themoviedb/imageUrl';
+import type { FeatureData } from 'services/themoviedb/types';
 import './styles.scss';
 
 type FeatureCardProps = {
-  feature: FavoriteMovie;
+  feature: FeatureData;
   rank?: number;
 };
 //
@@ -16,8 +19,9 @@ export default function FeatureCard({
 }: FeatureCardProps): JSX.Element {
   const src = getSmBackdropURL(feature);
   const blurDataURL = getPlaceholderPosterURL(feature);
-  const title = feature.title;
-  const year = feature.release_date?.substring(0, 4) ?? '';
+  const title = feature.title ?? feature.name;
+  const year =
+    (feature.release_date ?? feature.first_air_date)?.substring(0, 4) ?? '';
   const rate = (feature?.rating ?? feature.vote_average) / 2;
   const rate_text = rate.toFixed(1);
   const rateClass = rate >= 5 ? 'highlight' : '';

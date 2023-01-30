@@ -16,5 +16,6 @@ export const serverSchema = z.object({});
 export const clientSchema = z.object({
   NEXT_PUBLIC_TMDB_TOKEN: z.string().min(minStr),
   NEXT_PUBLIC_TMDB_API_KEY: z.string().min(minStr),
-  NEXT_PUBLIC_TMDB_ACCOUNT_ID: z.string().min(minStr)
+  NEXT_PUBLIC_TMDB_ACCOUNT_ID: z.string().min(minStr),
+  NEXT_PUBLIC_TMDB_SESSION_ID: z.string().min(minStr)
 });

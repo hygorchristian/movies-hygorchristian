@@ -1,1 +1,1 @@
-export { default } from './FeatureList';
+export { default, FeatureListSkeleton } from './FeatureList';

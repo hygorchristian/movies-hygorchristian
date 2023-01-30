@@ -1,16 +1,11 @@
 import type { PropertyTypes } from 'src/helpers/PropertyTypes';
 
-export const featureEndpointTypes = {
-  movies: 'movies',
-  shows: 'shows'
-} as const;
-
 type IsoDate = string; // '2015-04-22'
 type UtcDate = string; // '2023-01-24 04:59:54 UTC'
 
-const featureMediaTypes = {
-  movies: 'movies',
-  shows: 'shows'
+export const featureMediaTypes = {
+  movie: 'movie',
+  tv: 'tv'
 } as const;
 
 export type FeatureMediaType = PropertyTypes<typeof featureMediaTypes>;
@@ -77,23 +72,25 @@ export type PaginatedReponse<T> = {
   total_results: number;
 };
 
-export type FavoriteMovie = {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: IsoDate;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-  rating?: number;
-};
+export type FeatureData =
+  | {
+      adult: boolean;
+      backdrop_path: string;
+      genre_ids: number[];
+      id: number;
+      original_language: string;
+      original_title: string;
+      overview: string;
+      popularity: number;
+      poster_path: string;
+      release_date: IsoDate;
+      title: string;
+      video: boolean;
+      vote_average: number;
+      vote_count: number;
+      rating?: number;
+    }
+  | FeatureResponse;
 
 export const featureResources = {
   // Movies
@@ -112,3 +109,22 @@ export const isFeatureResource = (input: unknown): input is FeatureResource =>
   Boolean(featureResources[input as FeatureResource]);
 
 export type FeatureResource = PropertyTypes<typeof featureResources>;
+
+export type AddToWatchlistRequestBody = {
+  media_type: FeatureMediaType;
+  media_id: number;
+  watchlist: boolean;
+};
+
+export type TMDBResponse = {
+  success: boolean;
+  status_code: number;
+  status_message: string;
+  results: FeatureResponse[];
+  page: number;
+};
+
+export type SearchResult = {
+  movie: FeatureResponse[];
+  tv: FeatureResponse[];
+};

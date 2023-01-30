@@ -1,9 +1,21 @@
-import type { AxiosInstance } from 'axios';
+/* eslint-disable import/no-anonymous-default-export */
+import type { AxiosInstance, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { env } from 'env/client.mjs';
-import type { FavoriteMovie, FeatureResource, PaginatedReponse } from './types';
+import type {
+  AddToWatchlistRequestBody,
+  FeatureData,
+  FeatureMediaType,
+  FeatureResource,
+  FeatureResponse,
+  PaginatedReponse,
+  SearchResult,
+  TMDBResponse
+} from './types';
 
 type GetEndpointPath = (account_id: string) => string;
+
+type DefaultResponse = AxiosResponse<TMDBResponse, any>;
 
 export function getEndpoint(account_id: string, key: FeatureResource): string {
   const keys: Record<FeatureResource, GetEndpointPath> = {
@@ -35,19 +47,60 @@ class TMDBApi {
         Authorization: `Bearer ${env.NEXT_PUBLIC_TMDB_TOKEN}`
       },
       params: {
-        api_key: env.NEXT_PUBLIC_TMDB_API_KEY
+        // api_key: env.NEXT_PUBLIC_TMDB_API_KEY,
+        // session_id: env.NEXT_PUBLIC_TMDB_SESSION_ID,
+        // append_to_response: 'videos,images'
       }
     });
   }
 
   public async getFeatureList(
     featureResource: FeatureResource
-  ): Promise<FavoriteMovie[]> {
+  ): Promise<FeatureData[]> {
     await new Promise(resolve => setTimeout(resolve, 2500));
-    const response = await this.client.get<PaginatedReponse<FavoriteMovie>>(
+    const response = await this.client.get<PaginatedReponse<FeatureData>>(
       getEndpoint(this.account_id, featureResource)
     );
+
     return response.data.results;
+  }
+
+  public async saveToWatchlist(
+    media_id: number,
+    media_type: FeatureMediaType
+  ): Promise<DefaultResponse> {
+    await new Promise(resolve => setTimeout(resolve, 2500));
+
+    const data: AddToWatchlistRequestBody = {
+      media_type,
+      media_id,
+      watchlist: true
+    };
+
+    const response = await this.client.post<DefaultResponse>('');
+
+    return response.data;
+  }
+
+  public async search(query: string): Promise<SearchResult> {
+    const options = {
+      params: { query: query }
+    };
+
+    const movieResults = await this.client
+      .get<TMDBResponse>('search/movie', options)
+      .then(res => res.data?.results)
+      .catch(err => [] as FeatureResponse[]);
+
+    const tvResults = await this.client
+      .get<TMDBResponse>('search/tv', options)
+      .then(res => res.data?.results)
+      .catch(err => [] as FeatureResponse[]);
+
+    return {
+      tv: tvResults,
+      movie: movieResults
+    };
   }
 }
 
