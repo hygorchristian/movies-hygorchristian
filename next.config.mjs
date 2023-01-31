@@ -21,6 +21,12 @@ const config = {
         hostname: 'image.tmdb.org',
         port: '',
         pathname: '/t/p/**'
+      },
+      {
+        protocol: 'http',
+        hostname: 'image.tmdb.org',
+        port: '',
+        pathname: '/t/p/**'
       }
     ]
   }

@@ -1,5 +1,5 @@
 import FeatureCard, { FeatureCardSkeleton } from 'components/FeatureCard';
-import type { FeatureData } from 'services/themoviedb/types';
+import type { FeatureData } from 'services/themoviedb';
 
 import './styles.scss';
 

@@ -1,11 +1,9 @@
+import clsx from 'clsx';
 import Separator from 'components/Separator';
 import Image from 'next/image';
 import { BsFillStarFill } from 'react-icons/bs';
-import {
-  getPlaceholderPosterURL,
-  getSmBackdropURL
-} from 'services/themoviedb/imageUrl';
-import type { FeatureData } from 'services/themoviedb/types';
+import type { FeatureData } from 'services/themoviedb';
+import Feature, { backdropSizes } from 'services/themoviedb/Feature';
 import './styles.scss';
 
 type FeatureCardProps = {
@@ -17,14 +15,7 @@ export default function FeatureCard({
   feature,
   rank
 }: FeatureCardProps): JSX.Element {
-  const src = getSmBackdropURL(feature);
-  const blurDataURL = getPlaceholderPosterURL(feature);
-  const title = feature.title ?? feature.name;
-  const year =
-    (feature.release_date ?? feature.first_air_date)?.substring(0, 4) ?? '';
-  const rate = (feature?.rating ?? feature.vote_average) / 2;
-  const rate_text = rate.toFixed(1);
-  const rateClass = rate >= 5 ? 'highlight' : '';
+  const _feature = new Feature(feature);
 
   return (
     <div className="h-feature-card">
@@ -32,11 +23,12 @@ export default function FeatureCard({
       <div className={['card', rank ? 'with-rank' : ''].join(' ')}>
         <div className="image">
           <Image
-            src={src}
-            blurDataURL={blurDataURL}
-            alt={title}
-            placeholder="blur"
+            src={_feature.getBackdropURL(backdropSizes.w780)}
+            blurDataURL={_feature.getBackdropURL(backdropSizes.w300)}
+            alt={_feature.title}
+            quality={100}
             fill
+            placeholder="blur"
             style={{
               height: '100%',
               width: '100%',
@@ -47,12 +39,12 @@ export default function FeatureCard({
         </div>
         <div className="info">
           <div className="feature-info">
-            <h2 className="title">{title}</h2>
-            <h5 className="year">{year}</h5>
+            <h2 className="title">{_feature.title}</h2>
+            <h5 className="year">{_feature.getYear()}</h5>
           </div>
           <Separator orientation="vertical" light />
-          <div className={['rate', rateClass].join(' ')}>
-            <span className="rate_number">{rate_text}</span>
+          <div className={clsx('rate', { highlight: _feature.rating >= 5 })}>
+            <span className="rate_number">{_feature.rating.toFixed(1)}</span>
             <BsFillStarFill type="solid" />
           </div>
         </div>

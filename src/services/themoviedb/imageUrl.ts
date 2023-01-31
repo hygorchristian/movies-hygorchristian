@@ -1,25 +1,28 @@
+/* eslint-disable import/no-anonymous-default-export */
 import type { FeatureData } from './types';
 
-export const getPosterURL = (feature: FeatureData) =>
-  `https://image.tmdb.org/t/p/w500${feature.poster_path}`;
+type Getter = (f: FeatureData) => string;
 
-export const getPlaceholderPosterURL = (feature: FeatureData) =>
-  `https://image.tmdb.org/t/p/w92${feature.poster_path}`;
+const baseURL = 'https://image.tmdb.org/t/p';
 
-export const getBackdropURL = (feature: FeatureData) =>
-  `https://image.tmdb.org/t/p/original${
-    feature.backdrop_path ?? feature.poster_path
-  }`;
+export const getBackdrop = (feature: FeatureData) =>
+  feature.backdrop_path ?? feature.poster_path ?? feature.id;
 
-export const getSmBackdropURL = (feature: FeatureData) => {
-  if (feature.backdrop_path === null) console.log(feature);
+export const getPoster = (feature: FeatureData) =>
+  feature.backdrop_path ?? feature.poster_path ?? feature.id;
 
-  return `https://image.tmdb.org/t/p/w780${
-    feature.backdrop_path ?? feature.poster_path
-  }`;
+//==============================================================================
+// Now it's time
+//==============================================================================
+
+class Feature {}
+
+const functions: Record<string, Getter> = {
+  getPosterURL: f => `${baseURL}/w500${f.poster_path}`,
+  getPlaceholderPosterURL: f => `${baseURL}/w92${f.poster_path}`,
+  getBackdropURL: f => `${baseURL}/original${getBackdrop(f)}`,
+  getSmBackdropURL: f => `${baseURL}/w780${getBackdrop(f)}`,
+  getPlaceholderBackdropURL: f => `${baseURL}/w300${getBackdrop(f)}`
 };
 
-export const getPlaceholderBackdropURL = (feature: FeatureData) =>
-  `https://image.tmdb.org/t/p/w300${
-    feature.backdrop_path ?? feature.poster_path
-  }`;
+export default functions;

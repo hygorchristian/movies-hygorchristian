@@ -10,48 +10,7 @@ export const featureMediaTypes = {
 
 export type FeatureMediaType = PropertyTypes<typeof featureMediaTypes>;
 
-export type Feature = {
-  id: number;
-  title: string;
-  original_title: string;
-  poster_path: string;
-  backdrop_path: string;
-  overview: string;
-  release_date: IsoDate;
-  media_type: FeatureMediaType;
-  adult: boolean;
-  genre_ids: number[];
-  original_language: 'en';
-  popularity: 6.196187;
-  vote_count: 427;
-  video: false;
-  vote_average: 8.18;
-};
-
-export type FeatureResponse = {
-  id: number;
-  poster_path: string;
-  backdrop_path: string;
-  total_results: number;
-  results: Feature[];
-  public: boolean;
-  revenue: string;
-  page: number;
-  object_ids: Record<string, string>;
-  comments: Record<string, string>;
-  iso_639_1: 'en';
-  total_pages: 3;
-  description: 'This is pretty wicked.';
-  created_by: {
-    gravatar_hash: 'c9e9fc152ee756a900db85757c29815d';
-    name: 'Travis Bell';
-    username: 'travisbell';
-  };
-  iso_3166_1: 'US';
-  average_rating: 6.21022;
-  runtime: 5478;
-  name: 'The Marvel Universe';
-};
+///// REFACTOR
 
 export type GetRequestTokenResponse = {
   success: boolean;
@@ -72,25 +31,25 @@ export type PaginatedReponse<T> = {
   total_results: number;
 };
 
-export type FeatureData =
-  | {
-      adult: boolean;
-      backdrop_path: string;
-      genre_ids: number[];
-      id: number;
-      original_language: string;
-      original_title: string;
-      overview: string;
-      popularity: number;
-      poster_path: string;
-      release_date: IsoDate;
-      title: string;
-      video: boolean;
-      vote_average: number;
-      vote_count: number;
-      rating?: number;
-    }
-  | FeatureResponse;
+export type FeatureData = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: IsoDate;
+  first_air_date: IsoDate;
+  title: string;
+  name: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  rating?: number;
+};
 
 export const featureResources = {
   // Movies
@@ -120,11 +79,11 @@ export type TMDBResponse = {
   success: boolean;
   status_code: number;
   status_message: string;
-  results: FeatureResponse[];
+  results: FeatureData[];
   page: number;
 };
 
 export type SearchResult = {
-  movie: FeatureResponse[];
-  tv: FeatureResponse[];
+  movie: FeatureData[];
+  tv: FeatureData[];
 };

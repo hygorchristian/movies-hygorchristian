@@ -7,7 +7,6 @@ import type {
   FeatureData,
   FeatureMediaType,
   FeatureResource,
-  FeatureResponse,
   PaginatedReponse,
   SearchResult,
   TMDBResponse
@@ -77,7 +76,7 @@ class TMDBApi {
       watchlist: true
     };
 
-    const response = await this.client.post<DefaultResponse>('');
+    const response = await this.client.post<DefaultResponse>('', data);
 
     return response.data;
   }
@@ -90,12 +89,12 @@ class TMDBApi {
     const movieResults = await this.client
       .get<TMDBResponse>('search/movie', options)
       .then(res => res.data?.results)
-      .catch(err => [] as FeatureResponse[]);
+      .catch(err => [] as FeatureData[]);
 
     const tvResults = await this.client
       .get<TMDBResponse>('search/tv', options)
       .then(res => res.data?.results)
-      .catch(err => [] as FeatureResponse[]);
+      .catch(err => [] as FeatureData[]);
 
     return {
       tv: tvResults,

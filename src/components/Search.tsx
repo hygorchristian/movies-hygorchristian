@@ -19,8 +19,10 @@ export default function Search(): JSX.Element {
   );
 
   const onSearch = useCallback(async () => {
+    if (searchQuery === '') return;
+
     const response = await fetch(
-      `/api/search?q=${encodeURIComponent(searchQuery) || ''}`
+      `/api/search?q=${encodeURIComponent(searchQuery)}`
     );
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const json = (await response.json()) as SearchResult;
