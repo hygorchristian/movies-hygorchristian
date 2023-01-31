@@ -14,7 +14,7 @@ export default async function AppPage() {
         withRank
       />
       <FeatureListLoader
-        title="Watched"
+        title="Watcheds"
         resource={featureResources.movies_rated}
       />
       <Search />

@@ -1,9 +1,11 @@
 export default function hashString(str: string): number {
+  if (!str) return 0;
+
   let hash = 0,
     i,
     chr,
     len;
-  if (str.length === 0) return hash;
+  if (str?.length === 0) return hash;
 
   for (i = 0, len = str.length; i < len; i++) {
     chr = str.charCodeAt(i);

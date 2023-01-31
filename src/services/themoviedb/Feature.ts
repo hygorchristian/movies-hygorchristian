@@ -1,5 +1,5 @@
-import { adjustHue } from 'polished';
 import type { PropertyTypes } from 'src/helpers/PropertyTypes';
+import Genre from './Genre';
 import type { FeatureData } from './types';
 
 export const backdropSizes = {
@@ -26,18 +26,6 @@ type ImageOptions<TSize> = {
   placeholder: boolean;
   size: TSize;
 };
-
-const genreNames: Record<number, string> = [];
-
-class Genre {
-  public readonly name: string;
-  public readonly color: string;
-
-  constructor(public readonly id: number) {
-    this.name = genreNames[id] as string;
-    this.color = adjustHue(180, '#448');
-  }
-}
 
 export default class Feature {
   private baseURL = 'http://image.tmdb.org/t/p/';
